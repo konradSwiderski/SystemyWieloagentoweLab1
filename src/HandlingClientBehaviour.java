@@ -5,7 +5,7 @@ import jade.lang.acl.MessageTemplate;
 public class HandlingClientBehaviour extends CyclicBehaviour
 {
 
-    private ContainerOfTokens containerOfTokens;// NOT SET
+    private ContainerOfTokens containerOfTokens;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -31,6 +31,9 @@ public class ServerAgent extends Agent
             ex.printStackTrace();
         }
 
+        //ADD Handling Client behaviour
+        HandlingClientBehaviour handlingClientBehaviour = new HandlingClientBehaviour();
+        addBehaviour(handlingClientBehaviour);
 
         //Temp Container
         ContainerOfTokens tempContainer = new ContainerOfTokens();
@@ -45,6 +48,7 @@ public class ServerAgent extends Agent
             {
                 tempContainer.createSingleToken();
             }
+
         };
         /////////////////////////////////////////TO DO... set container in HandlingClientBehaviour
         addBehaviour(creatingTokenBehaviour);
