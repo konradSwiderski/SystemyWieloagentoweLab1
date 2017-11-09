@@ -7,12 +7,13 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
+
 import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
-
 public class ClientAgent extends Agent{
 
     private Vector<AID> vectorOfServers = new Vector<>();
+    private Integer allowToRequest = 0;
     int numberOfReceivedMsg = 0;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,37 +28,53 @@ public class ClientAgent extends Agent{
             {
                 vectorOfServers.clear();
                 searchServers();
-                ACLMessage msg = myAgent.receive();
-                if(msg != null)
+                if(canReceive() == true)
                 {
-                    if (msg.getPerformative() == ACLMessage.AGREE)//Token
+                    ACLMessage msg = myAgent.receive();
+                    if(msg != null)
                     {
-                        numberOfReceivedMsg++;
+                        if (msg.getPerformative() == ACLMessage.AGREE)//Token
+                        {
+                            allowToRequest = 2;
+                            numberOfReceivedMsg++;
+                        }
+                        else if (msg.getPerformative() == ACLMessage.INFORM)//Not yet
+                        {
+                            allowToRequest = 2;
+                        }
+                        else if (msg.getPerformative() == ACLMessage.FAILURE)//The end
+                        {
+                            System.out.println("-----------\nEND OF AGENT " + myAgent.getName());
+                            System.out.println("I have received: " + numberOfReceivedMsg + " tokens");
+                            doDelete();
+                        }
                     }
-                    else if (msg.getPerformative() == ACLMessage.INFORM)//Not yet
+                    else//Send request
                     {
-
-                    }
-                    else if (msg.getPerformative() == ACLMessage.FAILURE)//The end
-                    {
-                        System.out.println("-----------\nEND OF AGENT " + myAgent.getName());
-                        System.out.println("I have received: " + numberOfReceivedMsg + " tokens");
-                        doDelete();
-                    }
-                }
-                else//Send request
-                {
-                    if(vectorOfServers.isEmpty() != true)
-                    {
+                        if(vectorOfServers.isEmpty() != true)
+                        {
                             ACLMessage reply = new ACLMessage(ACLMessage.REQUEST);
                             reply.addReceiver(vectorOfServers.firstElement());
                             myAgent.send(reply);
-                    }
+                        }
                         block();
+                    }
                 }
             }
         };
         addBehaviour(requestingBehaviour);
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private boolean canReceive()
+    {
+        if(allowToRequest>0)
+            allowToRequest--;
+        if(allowToRequest == 0)
+            return  true;
+        else
+            return false;
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
