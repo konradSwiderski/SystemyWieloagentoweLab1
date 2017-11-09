@@ -5,7 +5,7 @@ import jade.lang.acl.MessageTemplate;
 public class HandlingClientBehaviour extends CyclicBehaviour
 {
 
-    private ContainerOfTokens containerOfTokens;
+    private ContainerOfTokens containerOfTokens;// NOT SET
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -13,7 +13,7 @@ public class HandlingClientBehaviour extends CyclicBehaviour
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void action()
+    public void action() //listening ClientAgents //TO DO... handle msg and send token
     {
         ACLMessage msg = myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.REQUEST)); //set pattern and filter to request
         if (msg!= null)
@@ -26,5 +26,6 @@ public class HandlingClientBehaviour extends CyclicBehaviour
         {
             block();
         }
+
     }
 }
