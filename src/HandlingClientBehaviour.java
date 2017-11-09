@@ -27,6 +27,10 @@ public class HandlingClientBehaviour extends CyclicBehaviour
                 reply.setContent(singleToken.getTokenValue());
                 System.out.println("I have free token and I send to: " + msg.getSender().getName());
             }
+            else if(singleToken == null && containerOfTokens.getCurrentNumberOfTokens() < containerOfTokens.getLimitValueOfTokens())//Not yet
+            {
+                reply.setPerformative(ACLMessage.INFORM);
+            }
         }
         else
         {
