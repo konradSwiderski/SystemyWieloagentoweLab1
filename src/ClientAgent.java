@@ -13,6 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ClientAgent extends Agent{
 
     private Vector<AID> vectorOfServers = new Vector<>();
+    int numberOfReceivedMsg = 0;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -31,7 +32,7 @@ public class ClientAgent extends Agent{
                 {
                     if (msg.getPerformative() == ACLMessage.AGREE)//Token
                     {
-
+                        numberOfReceivedMsg++;
                     }
                     else if (msg.getPerformative() == ACLMessage.INFORM)//Not yet
                     {
@@ -39,7 +40,8 @@ public class ClientAgent extends Agent{
                     }
                     else if (msg.getPerformative() == ACLMessage.FAILURE)//The end
                     {
-
+                        System.out.println("-----------\nEND OF AGENT " + myAgent.getName());
+                        System.out.println("I have received: " + numberOfReceivedMsg + " tokens");
                         doDelete();
                     }
                 }
