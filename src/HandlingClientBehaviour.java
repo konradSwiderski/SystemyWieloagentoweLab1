@@ -31,6 +31,11 @@ public class HandlingClientBehaviour extends CyclicBehaviour
             {
                 reply.setPerformative(ACLMessage.INFORM);
             }
+            else//No more tokens
+            {
+                reply.setPerformative(ACLMessage.FAILURE);
+            }
+            myAgent.send(reply);
         }
         else
         {
