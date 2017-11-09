@@ -19,8 +19,14 @@ public class HandlingClientBehaviour extends CyclicBehaviour
         if (msg!= null)
         {
             ACLMessage reply = msg.createReply();//create reply to Agent
-            //handling msg from ClientAgent
-            //send msg to ClientAgent
+            SingleToken singleToken = containerOfTokens.getSingleToken();
+
+            if (singleToken != null)//I have token
+            {
+                reply.setPerformative(ACLMessage.AGREE);
+                reply.setContent(singleToken.getTokenValue());
+                System.out.println("I have free token and I send to: " + msg.getSender().getName());
+            }
         }
         else
         {
