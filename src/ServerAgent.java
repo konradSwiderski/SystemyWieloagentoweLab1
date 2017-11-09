@@ -37,7 +37,8 @@ public class ServerAgent extends Agent
 
         //Temp Container
         ContainerOfTokens tempContainer = new ContainerOfTokens();
-        tempContainer.setLimitValueOfTokens(ThreadLocalRandom.current().nextInt(20, 30 + 1));//set limit
+        tempContainer.setLimitValueOfTokens(ThreadLocalRandom.current().nextInt(20, 30 + 1));
+        handlingClientBehaviour.setContainerOfTokens(tempContainer);//init member
 
         System.out.println("Limit of tokens: " + tempContainer.getLimitValueOfTokens());
 
@@ -47,10 +48,9 @@ public class ServerAgent extends Agent
             protected void onTick()
             {
                 tempContainer.createSingleToken();
+                handlingClientBehaviour.setContainerOfTokens(tempContainer);//set to member
             }
-
         };
-        /////////////////////////////////////////TO DO... set container in HandlingClientBehaviour
         addBehaviour(creatingTokenBehaviour);
         System.out.println("Server has been started");
     }
