@@ -4,10 +4,14 @@ import java.util.Vector;
 public class ContainerOfTokens
 {
     private Vector<SingleToken> vectorOfTokens = new Vector<>();
-    private Integer limitValueOfTokens = 0;
     private Integer currentNumberOfTokens = 0;
+    private Integer limitValueOfTokens = 0;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public Integer getCurrentNumberOfTokens() {
+        return currentNumberOfTokens;
+    }
 
     public Integer getLimitValueOfTokens() {
         return limitValueOfTokens;
@@ -15,10 +19,6 @@ public class ContainerOfTokens
 
     public void setLimitValueOfTokens(Integer limitValueOfTokens) {
         this.limitValueOfTokens = limitValueOfTokens;
-    }
-
-    public Integer getCurrentNumberOfTokens() {
-        return currentNumberOfTokens;
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////

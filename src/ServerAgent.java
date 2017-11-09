@@ -14,7 +14,7 @@ public class ServerAgent extends Agent
     {
         super.setup();
 
-        //Register agent
+        //Register agent to find
         DFAgentDescription dfd = new DFAgentDescription();
         dfd.setName(getAID());
         ServiceDescription sd = new ServiceDescription();
