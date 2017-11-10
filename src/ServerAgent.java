@@ -44,22 +44,15 @@ public class ServerAgent extends Agent
         HandlingClientBehaviour handlingClientBehaviour = new HandlingClientBehaviour();
         addBehaviour(handlingClientBehaviour);
 
-        //Temp Container
-//        ContainerOfTokens tempContainer = new ContainerOfTokens();
-//        tempContainer.setLimitValueOfTokens(ThreadLocalRandom.current().nextInt(100, 200 + 1));
-//        handlingClientBehaviour.setContainerOfTokens(tempContainer);//init member
+        //Set limit of tokens
         handlingClientBehaviour.getContainerOfTokens().setLimitValueOfTokens(randNumberOfTokens);
 
-//        System.out.println("Limit of tokens: " + tempContainer.getLimitValueOfTokens());
-
-        //ADD Creating token behaviour #interval
         Behaviour creatingTokenBehaviour = new TickerBehaviour( this, randInterval)
         {
             protected void onTick()
             {
-//                tempContainer.createSingleToken();
-//                handlingClientBehaviour.setContainerOfTokens(tempContainer);//set to member
-                handlingClientBehaviour.getContainerOfTokens().createSingleToken();
+
+                handlingClientBehaviour.getContainerOfTokens().createSingleToken();//set to member
             }
         };
         addBehaviour(creatingTokenBehaviour);
