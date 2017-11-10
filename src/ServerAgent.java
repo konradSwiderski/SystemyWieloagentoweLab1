@@ -10,6 +10,15 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ServerAgent extends Agent
 {
+    private  int randInterval = 0;
+    private  int randNumberOfTokens = 0;
+    public ServerAgent()
+    {
+        randInterval = ThreadLocalRandom.current().nextInt(200, 2000 + 1);
+        System.out.println("_Time of interval behaviour: #Creating token " + randInterval);
+        randNumberOfTokens = ThreadLocalRandom.current().nextInt(100, 200 + 1);
+        System.out.println("Limit of tokens: " + randNumberOfTokens);
+    }
     @Override
     protected void setup()
     {
@@ -36,19 +45,21 @@ public class ServerAgent extends Agent
         addBehaviour(handlingClientBehaviour);
 
         //Temp Container
-        ContainerOfTokens tempContainer = new ContainerOfTokens();
-        tempContainer.setLimitValueOfTokens(ThreadLocalRandom.current().nextInt(20, 30 + 1));
-        handlingClientBehaviour.setContainerOfTokens(tempContainer);//init member
+//        ContainerOfTokens tempContainer = new ContainerOfTokens();
+//        tempContainer.setLimitValueOfTokens(ThreadLocalRandom.current().nextInt(100, 200 + 1));
+//        handlingClientBehaviour.setContainerOfTokens(tempContainer);//init member
+        handlingClientBehaviour.getContainerOfTokens().setLimitValueOfTokens(randNumberOfTokens);
 
-        System.out.println("Limit of tokens: " + tempContainer.getLimitValueOfTokens());
+//        System.out.println("Limit of tokens: " + tempContainer.getLimitValueOfTokens());
 
         //ADD Creating token behaviour #interval
-        Behaviour creatingTokenBehaviour = new TickerBehaviour( this, ThreadLocalRandom.current().nextInt(200, 2000 + 1))
+        Behaviour creatingTokenBehaviour = new TickerBehaviour( this, randInterval)
         {
             protected void onTick()
             {
-                tempContainer.createSingleToken();
-                handlingClientBehaviour.setContainerOfTokens(tempContainer);//set to member
+//                tempContainer.createSingleToken();
+//                handlingClientBehaviour.setContainerOfTokens(tempContainer);//set to member
+                handlingClientBehaviour.getContainerOfTokens().createSingleToken();
             }
         };
         addBehaviour(creatingTokenBehaviour);

@@ -12,9 +12,16 @@ import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
 public class ClientAgent extends Agent{
 
+    private int randInterval = 0;
     private Vector<AID> vectorOfServers = new Vector<>();
     private Integer allowToRequest = 0;
     int numberOfReceivedMsg = 0;
+
+    public ClientAgent()
+    {
+        randInterval = ThreadLocalRandom.current().nextInt(200, 2000 + 1);
+        System.out.println("_Time of interval behaviour: #Reqesusting server " + randInterval);
+    }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -22,7 +29,7 @@ public class ClientAgent extends Agent{
     protected void setup()
     {
         super.setup();
-        Behaviour requestingBehaviour = new TickerBehaviour(this,ThreadLocalRandom.current().nextInt(200, 2000 + 1) )
+        Behaviour requestingBehaviour = new TickerBehaviour(this, randInterval)
         {
             protected void onTick()
             {

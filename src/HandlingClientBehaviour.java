@@ -5,9 +5,13 @@ import jade.lang.acl.MessageTemplate;
 public class HandlingClientBehaviour extends CyclicBehaviour
 {
 
-    private ContainerOfTokens containerOfTokens;
+    private ContainerOfTokens containerOfTokens = new ContainerOfTokens();
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public ContainerOfTokens getContainerOfTokens() {
+        return containerOfTokens;
+    }
 
     public void setContainerOfTokens(ContainerOfTokens containerOfTokens) { this.containerOfTokens = containerOfTokens; }
 
