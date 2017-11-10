@@ -13,8 +13,6 @@ public class HandlingClientBehaviour extends CyclicBehaviour
         return containerOfTokens;
     }
 
-    public void setContainerOfTokens(ContainerOfTokens containerOfTokens) { this.containerOfTokens = containerOfTokens; }
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void action() //listening ClientAgents //TO DO... handle msg and send token

@@ -12,6 +12,9 @@ public class ServerAgent extends Agent
 {
     private  int randInterval = 0;
     private  int randNumberOfTokens = 0;
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public ServerAgent()
     {
         randInterval = ThreadLocalRandom.current().nextInt(200, 2000 + 1);
@@ -19,6 +22,9 @@ public class ServerAgent extends Agent
         randNumberOfTokens = ThreadLocalRandom.current().nextInt(100, 200 + 1);
         System.out.println("Limit of tokens: " + randNumberOfTokens);
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     @Override
     protected void setup()
     {
@@ -51,7 +57,6 @@ public class ServerAgent extends Agent
         {
             protected void onTick()
             {
-
                 handlingClientBehaviour.getContainerOfTokens().createSingleToken();//set to member
             }
         };

@@ -17,6 +17,8 @@ public class ClientAgent extends Agent{
     private Integer allowToRequest = 0;
     int numberOfReceivedMsg = 0;
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public ClientAgent()
     {
         randInterval = ThreadLocalRandom.current().nextInt(200, 2000 + 1);
