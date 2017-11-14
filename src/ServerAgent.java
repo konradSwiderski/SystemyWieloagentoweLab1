@@ -48,10 +48,9 @@ public class ServerAgent extends Agent
 
         //ADD Handling Client behaviour
         HandlingClientBehaviour handlingClientBehaviour = new HandlingClientBehaviour();
-        addBehaviour(handlingClientBehaviour);
-
         //Set limit of tokens
         handlingClientBehaviour.getContainerOfTokens().setLimitValueOfTokens(randNumberOfTokens);
+        addBehaviour(handlingClientBehaviour);
 
         Behaviour creatingTokenBehaviour = new TickerBehaviour( this, randInterval)
         {

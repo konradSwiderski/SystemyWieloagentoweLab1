@@ -15,7 +15,7 @@ public class ClientAgent extends Agent{
     private int randInterval = 0;
     private Vector<AID> vectorOfServers = new Vector<>();
     private Integer allowToRequest = 0;
-    int numberOfReceivedMsg = 0;
+    private int numberOfReceivedMsg = 0;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
